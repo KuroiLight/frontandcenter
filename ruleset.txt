@@ -1,0 +1,31 @@
+##############################filter rules
+#a filter rule must have the following sections
+#<section 1>|<section 2>|<section 3>
+#each section must follow the patterns below
+#1- 	section 1 must contain any of the following words "class", "exe", "ititle" or "title".
+#1-a- 		class matches a new windows class_name to the <section 2> string (case insensitive)
+#1-b- 		exe matches a new windows executable name to the <section 2> string (case insensitive)
+#1-c- 		ititle matches a new windows title/caption text to the <section 2> string (case insensitive)
+#1-e- 		title matches a new windows title/caption text to the <section 2> string (case sensitive)
+#1-e-a-			both ititle and title are partial matches, meaning the whole title need not be present.
+#2- 	section 2 contains a string to be matched against, based on section 1.
+#3- 	section 3 contains a number specifying the monitor to move the window to.
+#3-a-		putting a 0 (zero) denote that the matching window should be skipped, always.
+#3-b-		instead of a number the letter "m" can be used instead to denote the monitor that the mouse/cursor is currently on, this is the default behavior for all new windows and isn't needed for individual rules.
+#3-c-		a exclaimation mark can also be placed before the number to denote that the window must always be centered to the target monitor, even when its already on that monitor, can be used with "m" mentioned above to force center new windows.
+#- sections must be seperated by a Pipe "|" symbol.
+# #(pound/hash) symbols are start line comments
+##############################Notes
+#N- There are 2 important notes
+#N-1- Windows without the VISIBLE(0x10000000) or the SYSMENU(0x00080000) windowing Styles will be skipped completely.
+#N-2- the default rule at the bottom of this file "class|Progman|0" skips the desktop window, as this shouldn't be moved.
+##############################examples
+## these are some examples for referrence, that I currently use.
+# "title|ahkwininfotool|0" will skip the window titled "ahkwininfotool".
+# "exe|resonic.exe|2" moves any window belonging to the executable named "resonic.exe" to the 2nd monitor.
+
+class|Progman|0
+
+title|ahkwininfotool|0
+exe|resonic.exe|2
+title|AutoHotkey Help|!2
